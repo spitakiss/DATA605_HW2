@@ -1,0 +1,320 @@
+---
+title: 'DATA 605:  Week 2 Assignment'
+author: "Aaron Grzasko"
+date: "February 12, 2017"
+output: 
+    html_document:
+        theme: default
+        highlight: haddock
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Problem Set 1  
+  
+**1. Show that ${ A }^{ T }A\neq A{ A }^{ T }$ in general (Proof and demonstration).**  
+    
+To prove this, we need to show $\neg \forall A\left[ { A }^{ T }A=A{ A }^{ T } \right]$, or equivalently, $\exists A\neg\left[ { A }^{ T }A=A{ A }^{ T } \right]$. 
+  
+**Proof 1: Arbitrary Rectangular Matrix**  
+
+Let $A\in {\mathbb{R}}^{ m\times n }$.  We can represent matrix A as follows:  
+  
+$$A=\begin{bmatrix} { \alpha  }_{ 11 } & { \alpha  }_{ 12 } & \cdots  & { \alpha  }_{ 1n } \\ \alpha _{ 21 } & { \alpha  }_{ 22 } & \cdots  & { \alpha  }_{ 2n } \\ \vdots  & \vdots  & \vdots  & \vdots  \\ { \alpha  }_{ m1 } & { \alpha  }_{ m2 } & \cdots  & { \alpha  }_{ mn } \end{bmatrix}$$
+  
+Let $B\in {\mathbb{R}}^{ n\times m }$.  Matrix B is the transpose of A if, for $1\le i\le m$ and $1\le j\le n$, ${ \beta  }_{ ji }={ \alpha  }_{ ij }$.  Here, ${ \beta }_{ ji }$ represents the scalar quantity in row j, column i of matrix B, and  ${ \alpha  }_{ ij }$  denotes the scalar quantity in the i-th row, j-th column of matrix A.  
+  
+The transpose of A is typically denoted as ${A}^{T}$.  Now, if we assume B is the transpose of A, then $B={ A }^{ T }$. We can represent the individual elements of matrix B as follows:  
+  
+$$B=\begin{bmatrix} { \beta  }_{ 11 } & { \beta  }_{ 12 } & \cdots  & { \beta  }_{ 1m } \\ \beta _{ 21 } & { \beta  }_{ 22 } & \cdots  & { \beta  }_{ 2m } \\ \vdots  & \vdots  & \vdots  & \vdots  \\ { \beta  }_{ n1 } & { \beta  }_{ n2 } & \cdots  & { \beta  }_{ nm } \end{bmatrix}=\begin{bmatrix} { \alpha  }_{ 11 } & { \alpha  }_{ 21 } & \cdots  & { \alpha  }_{ m1 } \\ \alpha _{ 12 } & { \alpha  }_{ 22 } & \cdots  & { \alpha  }_{ m2 } \\ \vdots  & \vdots  & \vdots  & \vdots  \\ { \alpha  }_{ 1n } & { \alpha  }_{ 2n } & \cdots  & { \alpha  }_{ mn } \end{bmatrix}={ A }^{ T }$$  
+
+
+Using the rules of matrix multiplication, we calculate ${ A }^{ T }A$ as follows:  
+  
+$${ A }^{ T }A=\begin{bmatrix} { \alpha  }_{ 11 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 21 }{ \alpha  }_{ 21 }+...+{ \alpha  }_{ m1 }{ \alpha  }_{ m1 }\quad  & { \alpha  }_{ 11 }{ \alpha  }_{ 12 }+{ \alpha  }_{ 21 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ m1 }{ \alpha  }_{ m2 } & \cdots  & { \alpha  }_{ 11 }{ \alpha  }_{ 1n }+{ \alpha  }_{ 21 }{ \alpha  }_{ 2n }+...+{ \alpha  }_{ m1 }{ \alpha  }_{ mn } \\ { \alpha  }_{ 12 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 22 }{ \alpha  }_{ 21 }+...+{ \alpha  }_{ m2 }{ \alpha  }_{ m1 } & { \alpha  }_{ 12 }{ \alpha  }_{ 12 }+{ \alpha  }_{ 22 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ m2 }{ \alpha  }_{ m2 } & \cdots  & { \alpha  }_{ 12 }{ \alpha  }_{ 1n }+{ \alpha  }_{ 22 }{ \alpha  }_{ 2n }+...+{ \alpha  }_{ m2 }{ \alpha  }_{ mn } \\ \vdots  & \vdots  & \vdots  & \vdots  \\ { \alpha  }_{ 1n }{ \alpha  }_{ 11 }+{ \alpha  }_{ 2n }{ \alpha  }_{ 21 }+...+{ \alpha  }_{ mn }{ \alpha  }_{ m1 } & { \alpha  }_{ 1n }{ \alpha  }_{ 12 }+{ \alpha  }_{ 2n }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ mn }{ \alpha  }_{ m2 } & \cdots  & { \alpha  }_{ 1n }{ \alpha  }_{ 1n }+{ \alpha  }_{ 2n }{ \alpha  }_{ 2n }+...+{ \alpha  }_{ mn }{ \alpha  }_{ mn } \end{bmatrix}$$  
+We see that the product of ${ A }^{ T }A$, shown above, is a square, n x n matrix.     
+<br>  
+
+Next, we calculate $A{ A }^{ T }$ using the rules of matrix multiplication:  
+  
+$${ AA }^{ T }=\begin{bmatrix} { \alpha  }_{ 11 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 12 }{ \alpha  }_{ 12 }+...+{ \alpha  }_{ 1n }{ \alpha  }_{ 1n }\quad  & { \alpha  }_{ 11 }{ \alpha  }_{ 21 }+{ \alpha  }_{ 12 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ 1n }{ \alpha  }_{ 2n } & \cdots  & { \alpha  }_{ 11 }{ \alpha  }_{ m1 }+{ \alpha  }_{ 12 }{ \alpha  }_{ m2 }+...+{ \alpha  }_{ 1n }{ \alpha  }_{ mn } \\ { \alpha  }_{ 21 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 22 }{ \alpha  }_{ 12 }+...+{ \alpha  }_{ 2n }{ \alpha  }_{ 1n } & { \alpha  }_{ 21 }{ \alpha  }_{ 21 }+{ \alpha  }_{ 22 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ 2n }{ \alpha  }_{ 2n } & \cdots  & { \alpha  }_{ 21 }{ \alpha  }_{ m1 }+{ \alpha  }_{ 22 }{ \alpha  }_{ m2 }+...+{ \alpha  }_{ 2n }{ \alpha  }_{ mn } \\ \vdots  & \vdots  & \vdots  & \vdots  \\ { \alpha  }_{ m1 }{ \alpha  }_{ 11 }+{ \alpha  }_{ m2 }{ \alpha  }_{ 12 }+...+{ \alpha  }_{ mn }{ \alpha  }_{ 1n } & { \alpha  }_{ m1 }{ \alpha  }_{ 21 }+{ \alpha  }_{ m2 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ mn }{ \alpha  }_{ 2n } & \cdots  & { \alpha  }_{ m1 }{ \alpha  }_{ m1 }+{ \alpha  }_{ m2 }{ \alpha  }_{ m2 }+...+{ \alpha  }_{ mn }{ \alpha  }_{ mn } \end{bmatrix}$$
+From the calculation above, we see that the product $A{ A }^{ T }$ is a square, m x m matrix.  
+  
+We know that identical matrices have matching row and column dimensions.  
+  
+But matrix ${ A }^{ T }A$ has n x n dimensions and matrix $A{ A }^{ T }$ has m x m dimensions.  Therefore, the two matrices are not equivalent for arbitrary m x n  matrices where $m\neq n$.  We have proved that ${ A }^{ T }A\neq A{ A }^{ T }$ in general, which is what we wanted to show.  
+<br>  
+  
+**Proof 1: Concrete Example**  
+   
+Let $A=\begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}$.  Then, ${ A }^{ T }=\begin{bmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{bmatrix}$  
+  
+$${ A }^{ T }A=\begin{bmatrix} 1*1+4*4 & \quad 2*1+5*4 & \quad 3*1+6*4 \\ 1*2+4*5 & \quad 2*2+5*5 & \quad 3*2+6*5 \\ 1*3+4*6 & \quad 2*3+5*6 & \quad 3*3+6*6 \end{bmatrix}=\begin{bmatrix} 17 & 22 & 27 \\ 22 & 29 & 36 \\ 27 & 36 & 45 \end{bmatrix}\quad  $$ 
+$${ AA }^{ T }=\begin{bmatrix} 1*1+2*2+3*3 & \quad 4*1+5*2+6*3 \\ 1*4+2*5+3*6 & 4*4+5*5+6*6 \end{bmatrix}=\begin{bmatrix} 14 & 32 \\ 32 & 77 \end{bmatrix}$$  
+Clearly, ${ A }^{ T }A\neq A{ A }^{ T }$.  
+  
+**Proof 2: Abritrary Square Matrix**  
+  
+We can also show that ${ A }^{ T }A\neq A{ A }^{ T }$,in general, for square m x m matrices. 
+
+We previously noted that equivalent matrices share identical row and column dimensions.  However, we also know that equivalent matrices share identical scalar values for each element ${ \alpha  }_{ ij }$, where $1\le i\le m$ and $1\le j\le m$.  
+  
+In *Proof 1*, we showed that element ${ \alpha  }_{ 11 }$ in matrix ${ A }^{ T }A$ is:  
+${ \alpha  }_{ 11 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 21 }{ \alpha  }_{ 21 }+...+{ \alpha  }_{ m1 }{ \alpha  }_{ m1 }$
+ 
+But this calculation is not identical to to the expression for element ${ \alpha  }_{ 11 }$ in matrix $A{ A }^{ T }$:  
+${ \alpha  }_{ 11 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 12 }{ \alpha  }_{ 12 }+...+{ \alpha  }_{ 1m }{ \alpha  }_{ 1m }$  
+  
+(Note:  we substituted "m" for "n" in the above calculation, since we are limiting our examination to square matrices only).  
+  
+The first expression refers to elements ${ \alpha  }_{ 21 }$ and ${ \alpha  }_{ m1 }$ in the original matrix A; whereas the second expression refers to elements ${ \alpha  }_{ 12 }$ and ${ \alpha  }_{ 1m }$, respectively.  Because the expressions refer to different elements from matrix A, the resulting dot products--which correspond to the ${ \alpha  }_{ 11 }$ elements in each matrix-- may also differ.  If element ${ \alpha  }_{ 11 }$ in  ${ A }^{ T }A$ is not identical to element ${ \alpha  }_{ 11 }$ in $A{ A }^{ T }$, then ${ A }^{ T }A\neq A{ A }^{ T }$, which is what we wanted to show.   
+  
+**Proof 2: Concrete Example**  
+  
+Let $A=\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$.  Then ${ A }^{ T }=\begin{bmatrix} 1 & 3 \\ 2 & 4 \end{bmatrix}$.  
+  
+<br>
+$${ A }^{ T }A=\begin{bmatrix} 1*1+3*3 & \quad 1*2+3*4 \\ 2*1+4*3 & \quad 2*2+4*4 \end{bmatrix}=\begin{bmatrix} 10 & 14 \\ 14 & 20 \end{bmatrix}$$  
+$${ AA }^{ T }=\begin{bmatrix} 1*1+2*2 & \quad 1*3+2*4 \\ 3*1+4*2 & \quad 3*3+4*4 \end{bmatrix}=\begin{bmatrix} 5 & 11 \\ 11 & 25 \end{bmatrix}$$
+     
+In this example, ${ A }^{ T }A\neq A{ A }^{ T }$.  
+  
+**2. For a special type of square matrix A, we get ${ A }^{ T }A= A{ A }^{ T }$.  Under what conditions could this be true? (Hint: The Identity matrix I is an example of such a matrix).**   
+  
+**Proof: Abritrary m x m matrix**  
+In the previous problem, we indicated that the equation ${ A }^{ T }A= A{ A }^{ T }$ does not hold for rectangular matrices; so the equality is possible only with certain square matrices.  
+  
+We also know that for an arbitrary m x m matrix:  
+  
+$${ A }^{ T }A=\begin{bmatrix} { \alpha  }_{ 11 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 21 }{ \alpha  }_{ 21 }+...+{ \alpha  }_{ m1 }{ \alpha  }_{ m1 }\quad  & { \alpha  }_{ 11 }{ \alpha  }_{ 12 }+{ \alpha  }_{ 21 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ m1 }{ \alpha  }_{ m2 } & \cdots  & { \alpha  }_{ 11 }{ \alpha  }_{ 1m }+{ \alpha  }_{ 21 }{ \alpha  }_{ 2m }+...+{ \alpha  }_{ m1 }{ \alpha  }_{ mm } \\ { \alpha  }_{ 12 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 22 }{ \alpha  }_{ 21 }+...+{ \alpha  }_{ m2 }{ \alpha  }_{ m1 } & { \alpha  }_{ 12 }{ \alpha  }_{ 12 }+{ \alpha  }_{ 22 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ m2 }{ \alpha  }_{ m2 } & \cdots  & { \alpha  }_{ 12 }{ \alpha  }_{ 1m }+{ \alpha  }_{ 22 }{ \alpha  }_{ 2m }+...+{ \alpha  }_{ m2 }{ \alpha  }_{ mm } \\ \vdots  & \vdots  & \vdots  & \vdots  \\ { \alpha  }_{ 1m }{ \alpha  }_{ 11 }+{ \alpha  }_{ 2m }{ \alpha  }_{ 21 }+...+{ \alpha  }_{ mm }{ \alpha  }_{ m1 } & { \alpha  }_{ 1m }{ \alpha  }_{ 12 }+{ \alpha  }_{ 2m }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ mn }{ \alpha  }_{ m2 } & \cdots  & { \alpha  }_{ 1m }{ \alpha  }_{ 1m }+{ \alpha  }_{ 2m }{ \alpha  }_{ 2m }+...+{ \alpha  }_{ mm }{ \alpha  }_{ mm } \end{bmatrix}$$  
+and  
+  
+$${ AA }^{ T }=\begin{bmatrix} { \alpha  }_{ 11 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 12 }{ \alpha  }_{ 12 }+...+{ \alpha  }_{ 1m }{ \alpha  }_{ 1m }\quad  & { \alpha  }_{ 11 }{ \alpha  }_{ 21 }+{ \alpha  }_{ 12 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ 1m }{ \alpha  }_{ 2m } & \cdots  & { \alpha  }_{ 11 }{ \alpha  }_{ m1 }+{ \alpha  }_{ 12 }{ \alpha  }_{ m2 }+...+{ \alpha  }_{ 1m }{ \alpha  }_{ mn } \\ { \alpha  }_{ 21 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 22 }{ \alpha  }_{ 12 }+...+{ \alpha  }_{ 2m }{ \alpha  }_{ 1m } & { \alpha  }_{ 21 }{ \alpha  }_{ 21 }+{ \alpha  }_{ 22 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ 2m }{ \alpha  }_{ 2m } & \cdots  & { \alpha  }_{ 21 }{ \alpha  }_{ m1 }+{ \alpha  }_{ 22 }{ \alpha  }_{ m2 }+...+{ \alpha  }_{ 2m }{ \alpha  }_{ mn } \\ \vdots  & \vdots  & \vdots  & \vdots  \\ { \alpha  }_{ m1 }{ \alpha  }_{ 11 }+{ \alpha  }_{ m2 }{ \alpha  }_{ 12 }+...+{ \alpha  }_{ mm }{ \alpha  }_{ 1m } & { \alpha  }_{ m1 }{ \alpha  }_{ 21 }+{ \alpha  }_{ m2 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ mm }{ \alpha  }_{ 2m } & \cdots  & { \alpha  }_{ m1 }{ \alpha  }_{ m1 }+{ \alpha  }_{ m2 }{ \alpha  }_{ m2 }+...+{ \alpha  }_{ mm }{ \alpha  }_{ mn } \end{bmatrix}$$  
+<br>  
+If ${ \alpha  }_{ ij }={ \alpha  }_{ ji }$ for all $1\le i\le m$ and $1\le j\le m$, we can substitute ${ \alpha  }_{ ji }$ for all ${ \alpha  }_{ ij }$ in our equation above for ${ AA }^{ T }$:  
+  
+$${ AA }^{ T }=\begin{bmatrix} { \alpha  }_{ 11 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 21 }{ \alpha  }_{ 21 }+...+{ \alpha  }_{ m1 }{ \alpha  }_{ m1 }\quad  & { \alpha  }_{ 11 }{ \alpha  }_{ 12 }+{ \alpha  }_{ 21 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ m1 }{ \alpha  }_{ m2 } & \cdots  & { \alpha  }_{ 11 }{ \alpha  }_{ 1m }+{ \alpha  }_{ 21 }{ \alpha  }_{ 2m }+...+{ \alpha  }_{ m1 }{ \alpha  }_{ mm } \\ { \alpha  }_{ 12 }{ \alpha  }_{ 11 }+{ \alpha  }_{ 22 }{ \alpha  }_{ 21 }+...+{ \alpha  }_{ m2 }{ \alpha  }_{ m1 } & { \alpha  }_{ 12 }{ \alpha  }_{ 12 }+{ \alpha  }_{ 22 }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ m2 }{ \alpha  }_{ m2 } & \cdots  & { \alpha  }_{ 12 }{ \alpha  }_{ 1m }+{ \alpha  }_{ 22 }{ \alpha  }_{ 2m }+...+{ \alpha  }_{ m2 }{ \alpha  }_{ mm } \\ \vdots  & \vdots  & \vdots  & \vdots  \\ { \alpha  }_{ 1m }{ \alpha  }_{ 11 }+{ \alpha  }_{ 2m }{ \alpha  }_{ 21 }+...+{ \alpha  }_{ mm }{ \alpha  }_{ m1 } & { \alpha  }_{ 1m }{ \alpha  }_{ 12 }+{ \alpha  }_{ 2m }{ \alpha  }_{ 22 }+...+{ \alpha  }_{ mn }{ \alpha  }_{ m2 } & \cdots  & { \alpha  }_{ 1m }{ \alpha  }_{ 1m }+{ \alpha  }_{ 2m }{ \alpha  }_{ 2m }+...+{ \alpha  }_{ mm }{ \alpha  }_{ mm } \end{bmatrix}$$  
+But the above expression on the right hand side is identical to the expression for ${ A }^{ T }A$.
+  
+We have shown that if ${ \alpha  }_{ ij }={ \alpha  }_{ ji }$ for all $1\le i\le m$ and $1\le j\le m$ then ${ A }^{ T }A= A{ A }^{ T }$.  Matrices that satisfy this criteria are known as **symmetric** matrices.    
+  
+**Concrete Example** 
+  
+Let $A=\begin{bmatrix} 1 & 2 & 3 \\ 2 & 5 & 3 \\ 3 & 4 & 6 \end{bmatrix}$.  Then ${ A }^{ T }=\begin{bmatrix} 1 & 2 & 3 \\ 2 & 5 & 3 \\ 3 & 4 & 6 \end{bmatrix}$.  
+  
+$$A{ A }^{ T }=A{ A }^{ T }=\begin{bmatrix} 1*1+2*2+3*3 & \quad 1*2+2*5+3*4 & \quad 1*3+2*4+3*6 \\ 2*1+5*2+4*3 & \quad 2*2+5*5+4*4 & \quad 2*3+5*4+4*6 \\ 3*1+4*2+6*3 & \quad 3*2+4*5+6*4 & \quad 3*3+4*4+6*6 \end{bmatrix}=\begin{bmatrix} 14 & 24 & 29 \\ 24 & 45 & 50 \\ 29 & 50 & 61 \end{bmatrix}$$
+  
+## Problem Set 2  
+  
+Matrix factorization is a very important problem. There are supercomputers built just
+to do matrix factorizations. Every second you are on an airplane, matrices are being
+factorized. Radars that track flights use a technique called Kalman filtering. At the heart
+of Kalman Filtering is a Matrix Factorization operation. Kalman Filters are solving linear
+systems of equations when they track your flight using radars.  Write an R function to factorize a square matrix A into LU or LDU, whichever you prefer.  You don’t have to worry about permuting rows of A and you can assume that A is less than 5x5, if you need to hard-code any variables in your code.  
+  
+Below is a function that returns a list comprising of matrices L and U, respectively.
+  
+```{r}
+# function to factorize square matrix A into LU components
+# assumes row exchanges are not necessary
+#     (e,g, when elements along diagonal are not zero before and after applying row operations)
+# function only works for matrices with dimensions of 2 x 2 through 5 x 5: 
+  
+
+LU_fact <- function(A){
+  # number of rows (and columns) of square matrix
+  m = nrow(A)
+  
+  # create identity matrix
+  set_identity <- function(A){
+    m <- nrow(A)
+    id_mat <- matrix(,m,m)
+    for (i in 1:m){
+      for (j in 1:m){
+        ifelse(i==j,id_mat[i,j]<-1,id_mat[i,j] <-0)
+      }
+    }
+    return(id_mat)
+  }
+  
+  # for all matrices, set elementary matrices
+  E21 <- set_identity(A)
+  E21[2,1] <- -A[2,1]/A[1,1]
+  
+  # set U
+  U <- E21 %*% A
+  
+  # set inverse elementary matrix
+  E21_inv <- set_identity(A)
+  E21_inv[2,1] <- -E21[2,1]
+  
+  # set L
+  L <- E21_inv
+  
+  
+  # additional calcs for matrices greater than 2 x 2  
+  if(m > 2){
+    # set elementary matrices
+    E31 <- set_identity(A)
+    E31[3,1] <- -A[3,1]/A[1,1]
+    
+    E32 <- set_identity(A)
+    E32[3,2] <- -A[3,2]/A[2,2]
+    
+    # modify U
+    U <- E32 %*% E31 %*% U  
+    
+    # set inverse elementary matrices
+    E31_inv <- set_identity(A)
+    E31_inv[3,1] <- -E31[3,1]
+    
+    E32_inv <- set_identity(A)
+    E32_inv[3,2] <- -E32[3,2]
+    
+    # modify L
+    L <- L %*% E31_inv %*% E32_inv 
+  } 
+  
+  # additional calcs for matrices greater than 3 x 3  
+  if(m > 3){
+    
+    # set elementary matrices
+    E41 <- set_identity(A)
+    E41[4,1] <- -A[4,1]/A[1,1]
+    
+    E42 <- set_identity(A)
+    E42[4,2] <- -A[4,2]/A[2,2]
+    
+    E43 <- set_identity(A)
+    E43[4,3] <- -A[4,3]/A[3,3]
+    
+    # modify U
+    U <- E43 %*% E42 %*% E41 %*% U
+    
+    # set inverse elementary matrices
+    E41_inv <- set_identity(A)
+    E41_inv[4,1] <- -E41[4,1]
+    
+    E42_inv <- set_identity(A)
+    E42_inv[4,2] <- -E42[4,2]
+    
+    E43_inv <- set_identity(A)
+    E43_inv[4,3] <- -E43[4,3]
+    
+    # modify L
+    L <- L %*% E41_inv %*% E42_inv %*% E43_inv
+    
+  }
+  
+  # additional calcs for matrices greater than 4 x 4  
+  if(m > 4 ){
+    
+    # set elementary matrices
+    E51 <- set_identity(A)
+    E51[5,1] <- -A[5,1]/A[1,1]
+    
+    E52 <- set_identity(A)
+    E52[5,2] <- -A[5,2]/A[2,2]
+  
+    E53 <- set_identity(A)
+    E53[5,3] <- -A[5,3]/A[3,3]
+    
+    E54 <- set_identity(A)
+    E54[5,4] <- -A[5,4]/A[4,4]
+    
+    # modify U  
+    U <- E54 %*% E53 %*% E52 %*% E51 %*% U    
+    
+    # set inverse elementary matrices
+    E51_inv <- set_identity(A)
+    E51_inv[5,1] <- -E51[5,1]
+    
+    E52_inv <- set_identity(A)
+    E52_inv[5,2] <- -E52[5,2]
+    
+    E53_inv <- set_identity(A)
+    E53_inv[5,3] <- -E53[5,3]
+    
+    E54_inv <- set_identity(A)
+    E54_inv[5,4] <- -E54[5,4]
+    
+    # modify L
+    L <- L %*% E51_inv %*% E52_inv %*% E53_inv %*% E54_inv
+  }
+  LU <- list("L" = L, "U" = U)
+  return(LU)
+}
+
+```
+
+Below is some testing code.  
+  
+For each m x m matrix type, we verify that the matrix input, A, is equal to the matrix product LU:  
+  
+```{r}
+# test 2x2
+A <- matrix(1:4,2,2)
+LU_fact(A)
+
+L <- matrix(unlist(LU_fact(A)["L"]), sqrt(length(unlist(LU_fact(A)["L"])))  )
+U <- matrix(unlist(LU_fact(A)["U"]), sqrt(length(unlist(LU_fact(A)["U"])))  )
+A == L %*% U
+
+# test 3 x 3
+A <- matrix(1:9,3,3)
+LU_fact(A)
+
+L <- matrix(unlist(LU_fact(A)["L"]), sqrt(length(unlist(LU_fact(A)["L"])))  )
+U <- matrix(unlist(LU_fact(A)["U"]), sqrt(length(unlist(LU_fact(A)["U"])))  )
+A == L %*% U
+
+# test 4 x 4 matrix
+A <- matrix(1:16,4,4)
+LU_fact(A)
+
+L <- matrix(unlist(LU_fact(A)["L"]), sqrt(length(unlist(LU_fact(A)["L"])))  )
+U <- matrix(unlist(LU_fact(A)["U"]), sqrt(length(unlist(LU_fact(A)["U"])))  )
+A == L %*% U
+
+# test 5 x 5 matrix
+A <- matrix(1:25,5,5)
+LU_fact(A)
+
+L <- matrix(unlist(LU_fact(A)["L"]), sqrt(length(unlist(LU_fact(A)["L"])))  )
+U <- matrix(unlist(LU_fact(A)["U"]), sqrt(length(unlist(LU_fact(A)["U"])))  )
+A == L %*% U
+
+
+```
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+
+  
+
+
+
+
